@@ -1,23 +1,20 @@
 # @devmsg/umi-plugin-rbac
 
-[![NPM version](https://img.shields.io/npm/v/@devmsg/umi-plugin-rbac.svg?style=flat)](https://npmjs.org/package/@devmsg/umi-plugin-rbac)
-[![NPM downloads](http://img.shields.io/npm/dm/@devmsg/umi-plugin-rbac.svg?style=flat)](https://npmjs.org/package/@devmsg/umi-plugin-rbac)
+rbac权限管理模块抽离, 包含用户、角色、资源基础三部分
 
-## Install
-
-```bash
-$ yarn install
+运行时配置
+```tsx | app.tsx
+export const rbac: RuntimeConfig['rbac'] = {
+  title: 'RBAC',
+  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  getMenuData: async () => {
+    const { success, data } = await request('/api/getMenus')
+    return success ? data : [];
+  },
+  logout: async () => { },
+}
 ```
 
-```bash
-$ npm run dev
-$ npm run build
-```
+后续只专注专注业务模块开发
 
-## Options
-
-TODO
-
-## LICENSE
-
-MIT
+server端在自建库中，后续单拎出来吧！
