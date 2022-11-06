@@ -27,8 +27,7 @@
   "devDependencies": {
     "@types/shelljs": "^0.8.11",
     "father": "4.1.0",
-    "umi": "^4.0.29",
-    "shelljs": "^0.8.5"
+    "umi": "^4.0.29"
   },
   "dependencies": {
     "@ant-design/icons": "4.7.0",
@@ -36,6 +35,7 @@
     "@umijs/plugins": "4.0.29",
     "antd": "4.24.1",
     "dayjs": "1.11.6",
-    "umi-request": "1.4.0"
+    "umi-request": "1.4.0",
+    "shelljs": "^0.8.5"
   }
 }
