@@ -26,13 +26,13 @@
   },
   "devDependencies": {
     "father": "4.1.0",
-    "umi": "^4.0.29"
+    "umi": "4.0.26"
   },
   "dependencies": {
     "@ant-design/icons": "4.7.0",
     "@ant-design/pro-components": "2.3.28",
     "@umijs/plugins": "4.0.29",
-    "antd": "4.24.1",
+    "antd": "4.23.5",
     "dayjs": "1.11.6",
     "umi-request": "1.4.0"
   }
