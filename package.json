@@ -32,7 +32,7 @@
   },
   "peerDependencies": {
     "umi": "^4.0.29"
-  }
+  },
   "dependencies": {
     "@ant-design/icons": "4.7.0",
     "@ant-design/pro-components": "2.3.28",
