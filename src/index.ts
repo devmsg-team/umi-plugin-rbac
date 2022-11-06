@@ -1,1 +1,3 @@
-export default 'Hello father 4!';
+import rbac from './rbac/rbac'
+export default rbac;
+
