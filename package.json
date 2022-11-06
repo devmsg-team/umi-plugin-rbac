@@ -2,7 +2,7 @@
   "name": "@devmsg/umi-plugin-rbac",
   "version": "0.0.6",
   "description": "rbac插件",
-  "main": "dist/index.js",
+  "main": "dist/index.ts",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "father dev",
@@ -26,13 +26,10 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
     "@types/shelljs": "^0.8.11",
-    "father": "4.1.0"
-  },
-  "peerDependencies": {
-    "umi": "^4.0.29"
+    "father": "4.1.0",
+    "umi": "^4.0.29",
+    "shelljs": "^0.8.5"
   },
   "dependencies": {
     "@ant-design/icons": "4.7.0",
@@ -40,9 +37,6 @@
     "@umijs/plugins": "4.0.29",
     "antd": "4.24.1",
     "dayjs": "1.11.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "umi-request": "1.4.0",
-    "shelljs": "^0.8.5"
+    "umi-request": "1.4.0"
   }
 }

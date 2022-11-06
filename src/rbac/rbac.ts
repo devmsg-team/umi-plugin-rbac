@@ -26,10 +26,14 @@ export default async (api: IApi) => {
   let pkgPath: string;
   let antdVersion = '';
   let proComponentsVersion = '';
+  let umiVersion = '';
+  let umiRequestVersion = '';
   try {
+    umiVersion = require('umi/package.json').version;
+    umiRequestVersion = require('umi-request/package.json').version;
     pkgPath = dirname(require.resolve('antd/package.json'));
     antdVersion = require(`${pkgPath}/package.json`).version;
-
+    umiVersion
     const techUiPkgPath = dirname(
       require.resolve('@ant-design/pro-components/package.json'),
     );
@@ -85,7 +89,7 @@ export default async (api: IApi) => {
         path: `/${item.split('.').join('/')}`,
         id: item,
         parentId: 'rbac-layout',
-        file: withTmpPath({ api, path: `plugin-rbac/modules/${item.split('.').join('/')}/index.tsx` }),
+        file: withTmpPath({ api, path: `plugin-rbac/modules/${item.split('.').join('/')}/index.tsx.tpl` }),
       };
     });
 
@@ -94,7 +98,7 @@ export default async (api: IApi) => {
       path: '*',
       id: '404',
       parentId: 'rbac-layout',
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/404/index.tsx' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/modules/404/index.tsx.tpl' }),
     };
     return memo;
   })
@@ -103,7 +107,7 @@ export default async (api: IApi) => {
   api.addLayouts(() => {
     return {
       id: "rbac-layout",
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/layout/index.tsx' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/modules/layout/index.tsx.tpl' }),
     }
   })
 
@@ -114,7 +118,7 @@ export default async (api: IApi) => {
     // 注入request
     api.writeTmpFile({
       path: 'request.ts',
-      content: readFileSync(join(__dirname, 'request.ts'), 'utf-8'),
+      content: readFileSync(join(__dirname, 'request.ts.tpl'), 'utf-8'),
     });
 
 
@@ -166,6 +170,6 @@ export interface IRuntimeConfig {
 
   api.logger.info('antd-version', antdVersion);
   api.logger.info('proComponents-version', proComponentsVersion);
-  api.logger.info('umi-version', api.pkg.dependencies?.umi);
-  api.logger.info('umi-request-version', api.pkg.dependencies?.['umi-request']);
+  api.logger.info('umi-version', umiVersion);
+  api.logger.info('umi-request-version', umiRequestVersion);
 };

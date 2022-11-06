@@ -2,7 +2,7 @@
 import { ActionType, ModalForm, ProColumns, ProFormRadio, ProFormSelect, ProFormText, ProFormTextArea, ProFormTreeSelect, ProTable } from '@ant-design/pro-components';
 import { Button, Form, Modal, Tag, TreeSelect } from 'antd';
 import { Fragment, ReactNode, useEffect, useRef, useState } from 'react';
-import { request, terminal } from 'umi';
+import { request } from 'umi';
 import dayjs from 'dayjs';
 
 export interface IRbacBaseProp {
