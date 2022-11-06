@@ -1,6 +1,6 @@
 {
   "name": "@devmsg/umi-plugin-rbac",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "rbac插件",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
