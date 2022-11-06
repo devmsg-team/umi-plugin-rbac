@@ -78,7 +78,7 @@ export default async (api: IApi) => {
       absPath: "/login",
       path: '/login',
       id: "login",
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/login/index.tsx' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/pages/login/index.tsx' }),
     };
 
     ['system.auth.resource', 'system.auth.role', 'system.auth.user'].forEach((item) => {
@@ -87,7 +87,7 @@ export default async (api: IApi) => {
         path: `/${item.split('.').join('/')}`,
         id: item,
         parentId: 'rbac-layout',
-        file: withTmpPath({ api, path: `plugin-rbac/modules/${item.split('.').join('/')}/index.tsx` }),
+        file: withTmpPath({ api, path: `plugin-rbac/pages/${item.split('.').join('/')}/index.tsx` }),
       };
     });
 
@@ -96,7 +96,7 @@ export default async (api: IApi) => {
       path: '*',
       id: '404',
       parentId: 'rbac-layout',
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/404/index.tsx' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/pages/404/index.tsx' }),
     };
     return memo;
   })
@@ -105,7 +105,7 @@ export default async (api: IApi) => {
   api.addLayouts(() => {
     return {
       id: "rbac-layout",
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/layout/index.tsx' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/pages/layout/index.tsx' }),
     }
   })
 
