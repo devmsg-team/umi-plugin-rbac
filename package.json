@@ -9,7 +9,7 @@
     "build": "father build",
     "build:deps": "father prebundle",
     "prepublishOnly": "father doctor && npm run build",
-    "publish": "npm publish && git push --follow-tags",
+    "publish": "npm publish && git push --follow-tags"
   },
   "keywords": [],
   "authors": [],
