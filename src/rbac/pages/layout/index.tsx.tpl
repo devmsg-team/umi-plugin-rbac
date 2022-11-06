@@ -1,9 +1,11 @@
 // @ts-nocheck
-import { useEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, Navigate, useLocation, useAppData, RuntimeConfig, useModel } from 'umi';
 import { ActionType, PageContainer, ProLayout } from '@ant-design/pro-components';
 import { InfoCircleOutlined, MergeCellsOutlined, QuestionCircleOutlined, UserOutlined } from '@ant-design/icons';
 import styles from './index.less';
+
+export const LayoutContext = createContext<ActionType>();
 
 export default function Layout() {
   const actionRef = useRef<ActionType>();
@@ -14,12 +16,6 @@ export default function Layout() {
     type: 'modify',
   });
   const { initialState } = useModel('@@initialState');
-
-  useEffect(() => {
-    initialState?.events.on('reloadMenu', () => {
-      actionRef.current?.reload();
-    });
-  }, []);
 
   return (
     <ProLayout
@@ -47,7 +43,11 @@ export default function Layout() {
       actionsRender={() => [<InfoCircleOutlined key="InfoCircleOutlined" />, <QuestionCircleOutlined key="QuestionCircleOutlined" />, <MergeCellsOutlined key="MergeCellsOutlined" />]}
     >
       <PageContainer title={false}>
-        <Outlet />
+        <LayoutContext.Provider
+          value={actionRef.current}
+        >
+          <Outlet />
+        </LayoutContext.Provider>
       </PageContainer>
     </ProLayout>
   );

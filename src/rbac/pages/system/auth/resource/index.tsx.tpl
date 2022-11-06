@@ -3,7 +3,8 @@ import { ActionType, ModalForm, ProColumns, ProForm, ProFormRadio, ProFormText, 
 import { Button, Form, Modal, Tag } from 'antd';
 import { request, useModel } from 'umi';
 import dayjs from 'dayjs';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useState, useContext } from 'react';
+import { LayoutContext } from '../../../layout';
 
 export interface IRbacBaseProp {
   updateAt: string;
@@ -20,9 +21,9 @@ interface ISysResourceItemProp extends IRbacBaseProp {
 
 export default () => {
   const actionRef = useRef<ActionType>();
-  const { initialState } = useModel('@@initialState');
   const [form] = Form.useForm();
   const [modalOption, setModalOption] = useState<{ visible: boolean; title: string; isEdit?: boolean }>();
+  const layoutAction = useContext(LayoutContext);
 
   const columns: ProColumns<ISysResourceItemProp>[] = [
     {
@@ -95,7 +96,7 @@ export default () => {
                   },
                 });
                 action?.reload();
-                initialState?.events.emit('reloadMenu', true);
+                layoutAction.reload();
               },
             });
           }}
@@ -163,7 +164,7 @@ export default () => {
             data: values,
           });
           actionRef.current?.reload();
-          initialState?.events.emit('reloadMenu', true);
+          layoutAction.reload();
           setModalOption({
             visible: false,
             title: modalOption?.title || '',
