@@ -28,18 +28,20 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@types/shelljs": "^0.8.11",
-    "father": "4.1.0"
+    "father": "4.1.0",
   },
+  "peerDependencies": {
+    "umi": "^4.0.29",
+  }
   "dependencies": {
-    "shelljs": "^0.8.5",
     "@ant-design/icons": "4.7.0",
     "@ant-design/pro-components": "2.3.28",
     "@umijs/plugins": "4.0.29",
     "antd": "4.24.1",
-    "dayjs": "^1.11.6",
+    "dayjs": "1.11.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "umi": "4.0.29",
-    "umi-request": "1.4.0"
+    "umi-request": "1.4.0",
+    "shelljs": "^0.8.5"
   }
 }
