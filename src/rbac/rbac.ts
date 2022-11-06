@@ -1,9 +1,7 @@
 import { IApi, RUNTIME_TYPE_FILE_NAME } from 'umi';
 import { dirname, join } from 'path';
 import withTmpPath from '../utils/withTmpPath';
-import * as shelljs from 'shelljs'
 import { readFileSync } from 'fs'
-
 
 export default async (api: IApi) => {
   api.describe({
@@ -89,7 +87,7 @@ export default async (api: IApi) => {
         path: `/${item.split('.').join('/')}`,
         id: item,
         parentId: 'rbac-layout',
-        file: withTmpPath({ api, path: `plugin-rbac/modules/${item.split('.').join('/')}/index.tsx.tpl` }),
+        file: withTmpPath({ api, path: `plugin-rbac/modules/${item.split('.').join('/')}/index.tsx` }),
       };
     });
 
@@ -98,7 +96,7 @@ export default async (api: IApi) => {
       path: '*',
       id: '404',
       parentId: 'rbac-layout',
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/404/index.tsx.tpl' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/modules/404/index.tsx' }),
     };
     return memo;
   })
@@ -107,14 +105,47 @@ export default async (api: IApi) => {
   api.addLayouts(() => {
     return {
       id: "rbac-layout",
-      file: withTmpPath({ api, path: 'plugin-rbac/modules/layout/index.tsx.tpl' }),
+      file: withTmpPath({ api, path: 'plugin-rbac/modules/layout/index.tsx' }),
     }
   })
 
   api.onGenerateFiles(() => {
-    shelljs.rm('-rf', join(api.paths.absTmpPath!, 'plugin-rbac'));
-    shelljs.mkdir('-p', join(api.paths.absTmpPath!, 'plugin-rbac'));
-    shelljs.cp('-r', join(__dirname, 'modules'), join(api.paths.absTmpPath!, 'plugin-rbac'));
+    const pages = [{
+      path: "pages/404",
+      hasLess: true,
+    }, {
+      path: "pages/login",
+      hasLess: true,
+    },
+    {
+      path: "pages/layout",
+      hasLess: true,
+    },
+    {
+      path: "pages/system/auth/resource",
+    },
+    {
+      path: "pages/system/auth/role",
+    },
+    {
+      path: "pages/system/auth/user",
+    }]
+
+    // 注入模板
+    for (const { path, hasLess } of pages) {
+      api.writeTmpFile({
+        path: `${path}/index.tsx`,
+        content: readFileSync(join(__dirname, `${path}/index.tsx.tpl`), 'utf-8'),
+      });
+
+      if (hasLess) {
+
+        api.writeTmpFile({
+          path: `${path}/index.less`,
+          content: readFileSync(join(__dirname, `${path}/index.less`), 'utf-8'),
+        });
+      }
+    }
     // 注入request
     api.writeTmpFile({
       path: 'request.ts',
