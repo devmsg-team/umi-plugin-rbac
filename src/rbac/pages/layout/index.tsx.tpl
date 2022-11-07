@@ -40,7 +40,7 @@ export default function Layout() {
         return routers?.map((v) => ({ breadcrumbName: v.breadcrumbName })) as [];
       }}
       fixSiderbar
-      actionsRender={() => [<InfoCircleOutlined key="InfoCircleOutlined" />, <QuestionCircleOutlined key="QuestionCircleOutlined" />, <MergeCellsOutlined key="MergeCellsOutlined" />]}
+      actionsRender={() => [<InfoCircleOutlined key="InfoCircleOutlined" />, <QuestionCircleOutlined key="QuestionCircleOutlined" />, <MergeCellsOutlined onClick={rbacConfig?.logout} key="MergeCellsOutlined" />]}
     >
       <PageContainer title={false}>
         <LayoutContext.Provider
