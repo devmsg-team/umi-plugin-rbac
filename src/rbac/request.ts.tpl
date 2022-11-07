@@ -29,4 +29,8 @@ request.interceptors.response.use(async response => {
 });
 
 
-export default request;
+export default request<{
+  success: boolean;
+  data: any
+  code: number
+}>;
