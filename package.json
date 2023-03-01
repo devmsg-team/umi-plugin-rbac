@@ -29,10 +29,10 @@
     "umi": "4.0.26"
   },
   "dependencies": {
-    "@ant-design/icons": "4.7.0",
-    "@ant-design/pro-components": "2.3.28",
-    "@umijs/plugins": "4.0.29",
-    "antd": "4.23.5",
+    "@ant-design/icons": "5.0.1",
+    "@ant-design/pro-components": "2.3.58",
+    "@umijs/plugins": "4.0.53",
+    "antd": "5.2.3",
     "dayjs": "1.11.6",
     "umi-request": "1.4.0"
   }

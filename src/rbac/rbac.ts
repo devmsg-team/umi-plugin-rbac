@@ -31,7 +31,6 @@ export default async (api: IApi) => {
     umiRequestVersion = require('umi-request/package.json').version;
     pkgPath = dirname(require.resolve('antd/package.json'));
     antdVersion = require(`${pkgPath}/package.json`).version;
-    umiVersion
     const techUiPkgPath = dirname(
       require.resolve('@ant-design/pro-components/package.json'),
     );
